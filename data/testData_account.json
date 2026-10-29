@@ -1,0 +1,16 @@
+{
+    "happy_path": [
+        {
+            "test_name": "Successful edit account",
+            "data":{
+                "username": "new name user",
+                "email": "newtestuser@gmail.com",
+                "phoneNumber": "012345789"
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "message": "Update profile success"
+            }
+        }
+    ]
+}

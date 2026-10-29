@@ -1,0 +1,128 @@
+{
+    "happy_path": [
+        {
+            "test_name": "Successful login with valid learner credentials",
+            "credentials":{
+                "email": "testuser_1792138301@gmail.com",
+                "password": "123456789"
+            },
+            "expected_ui_response": {
+                "url": "**/learner/dashboard*",
+                "page_title": "Dashboard |  Learnify for Learner"
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "message": "Login successful"
+            }
+        },
+        {
+            "test_name": "Successful login with valid instructor credentials",
+            "credentials":{
+                "email": "testuser2@gmail.com",
+                "password": "123456"
+            },
+            "expected_ui_response":{
+                "url": "**/instructor/course-builder",
+                "page_title": "AI Course Builder | Instructor - Learnify"
+            }
+        },
+        {
+            "test_name": "Successful login with valid reviewer credentials",
+            "credentials":{
+                "email": "reviewer@gmail.com",
+                "password": "1234567"
+            },
+            "expected_ui_response":{
+                "url": "**/reviewer/courses*",
+                "page_title": "Course Review Management | Content Reviewer | Learnify"
+            }
+        }
+    ],
+    "login_for_other_learner_feature": [
+        {
+            "test_name": "Successful login with valid learner credentials",
+            "credentials":{
+                "email": "testuser_1792138301@gmail.com",
+                "password": "123456789"
+            },
+            "expected_ui_response": {
+                "url": "**/learner/dashboard*",
+                "page_title": "Dashboard |  Learnify for Learner"
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "message": "Login successful"
+            }
+        }
+    ],
+    "login_for_other_instructor_feature": [
+        {
+            "test_name": "Successful login with valid instructor credentials",
+            "credentials":{
+                "email": "testuser2@gmail.com",
+                "password": "123456"
+            },
+            "expected_ui_response": {
+                "url": "**/instructor/course-builder",
+                "page_title": "AI Course Builder | Instructor - Learnify"
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "message": "Login successful"
+            }
+        }
+    ],
+    "unhappy_path": [
+        {
+            "test_name": "Login with correct email but incorrect password",
+            "credentials":{
+                "email": "testuser1@gmail.com",
+                "password": "wrongpassword"
+            },
+            "expected_ui_response": {
+                "page_title": "Log in |  Learnify for Learner",
+                "url": "/auth/log-in",
+                "error_message": "An error occurred. Please check your credentials and try again."
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "isError": false,
+                "message": "Email or password is incorrect"
+            }
+        },
+        {
+            "test_name": "Login with incorrect email and password",
+            "credentials":{
+                "email": "wronguser@gmail.com",
+                "password": "wrongpassword"
+            },
+            "expected_ui_response": {
+                 "page_title": "Log in |  Learnify for Learner",
+                 "url": "/auth/log-in",
+                "error_message": "An error occurred. Please check your credentials and try again."
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "isError": false,
+                "message": "Email or password is incorrect"
+            }
+        },
+        {
+            "test_name": "Login with empty email and password fields",
+            "credentials":{
+                "email": "",
+                "password": ""
+            },
+            "expected_ui_response": {
+                 "page_title": "Log in |  Learnify for Learner",
+                 "url": "/auth/log-in",
+                 "error_message": "Invalid email address"
+            },
+            "expected_api_response": {
+                "status_code": 200,
+                "isError": true,
+                "message": "email is invalid, Password must at least 5 character"
+            }
+        }
+    ]
+}

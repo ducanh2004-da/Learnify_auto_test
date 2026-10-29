@@ -1,0 +1,18 @@
+{
+    "happy_path": [
+        {
+            "test_name": "Successful Create Course",
+            "data":{
+                "title": "Test Course",
+                "abstract": "Test Course Abstract",
+                "file": "Chuong04.pdf",
+                "lesson_name": "Test Lesson",
+                "lesson_abstract": "Test Lesson Abstract"
+            },
+            "expected_ui_response":{
+                "url": "**/instructor/course-builder",
+                "page_title": "AI Course Builder | Instructor - Learnify"
+            }
+        }
+    ]
+}

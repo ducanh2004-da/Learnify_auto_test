@@ -1,0 +1,37 @@
+{
+    "happy_path": [
+        {
+            "test_name": "Successful enter course with full name",
+            "data":{
+                "course_name":"software testing 04"
+            },
+            "expected_ui_response": {
+                "url": "**/learner/courses*",
+                "page_title": "Course |  Learnify for Learner"
+            }
+        },
+        {
+            "test_name": "Successful enter course with partial name",
+            "data":{
+                "course_name":"software"
+            },
+            "expected_ui_response": {
+                "url": "**/learner/courses*",
+                "page_title": "Course |  Learnify for Learner"
+            }
+        }
+    ],
+    "unhappy_path": [
+        {
+            "test_name": "Search for not existing course",
+            "data":{
+                "course_name":"Learnify course"
+            },
+            "expected_ui_response": {
+                "url": "**/learner/courses*",
+                "page_title": "Course |  Learnify for Learner",
+                "error_message": "No results found"
+            }
+        }
+    ]
+}
