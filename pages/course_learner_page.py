@@ -15,7 +15,8 @@ class CourseLearnerPage(BasePage):
         self.page.wait_for_timeout(1000)
         course_selector = f"//div[contains(@class, 'card-content')]//h5[contains(text(),'{search_course_data['data']['course_name']}')]"
         if is_unhappy_path:
-            self.expect_element_visible(f'//p[contains(., "{search_course_data['expected_ui_response']['error_message']}")]')
+            error_msg = search_course_data['expected_ui_response']['error_message']
+            self.expect_element_visible(f'//p[contains(., "{error_msg}")]')
         else:
             self.expect_element_visible(course_selector)
 
