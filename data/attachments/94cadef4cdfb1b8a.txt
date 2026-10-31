@@ -1,0 +1,13 @@
+[INFO] Sending registration request for user1793418152e2e
+[INFO] Sending verify user by email request. 
+[INFO] Sending login request for testuser_1793418152@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 3b0bd391-6dba-41b1-a720-eca3346a6e98
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
+URL after navigation: https://learnify.io.vn/learner/dashboard?redirect=%2Flearner
+
+[CLEANUP] Bắt đầu dọn dẹp 1 user rác...
+[INFO] Sending login request for masteradmin@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 3bf235fa-da99-47b2-8ce6-5f12023ee65b
+[INFO] Sending delete user request.
+[CLEANUP ERROR] Không thể xóa user 3b0bd391-6dba-41b1-a720-eca3346a6e98. Lỗi: Delete user failed: [{'message': 'Internal server error', 'extensions': {'code': 'HttpException'}}]

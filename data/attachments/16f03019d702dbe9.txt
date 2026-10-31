@@ -1,0 +1,2 @@
+[INFO] Navigating to the register page.
+[INFO] Executing register flow: [REG-002a] Register with empty first name fields

@@ -1,0 +1,2 @@
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
