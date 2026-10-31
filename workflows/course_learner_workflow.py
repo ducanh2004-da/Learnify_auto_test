@@ -16,7 +16,6 @@ class CourseLearnerWorkflow:
         if is_unhappy_path:
             return
         courseId = self.course_learner_page.get_into_course(course_data)
-        # TRUYỀN PLAYWRIGHT REQUEST TỪ TRANG HIỆN TẠI VÀO API FLOW 
         playwright_request = self.course_learner_page.page.request
         self.enroll_course_flow.enroll_course(courseId, pw_request=playwright_request)
         self.course_learner_page.page.wait_for_timeout(2000)

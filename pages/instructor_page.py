@@ -40,7 +40,6 @@ class InstructorPage(BasePage):
         base_dir = Path(__file__).resolve().parent.parent
         file_path = base_dir / "FileToUpload" / file_name
 
-        # Bỏ qua file_chooser, set trực tiếp vào thẻ input[type="file"] có class cb-dropzone__file-input
         self.page.locator("input.cb-dropzone__file-input").set_input_files(str(file_path))
 
     def fill_lesson_information(self, create_course_data):

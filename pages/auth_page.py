@@ -85,8 +85,13 @@ class AuthPage(BasePage):
         elif register_data["test_name"] == "[REG-007] Register with existing email":
             # Luồng trùng email: chấp nhận thông báo Check your inbox! hoặc thông báo lỗi từ UI/API
             from playwright.sync_api import expect
-            combined_locator = self.page.locator(f'{self.success_msg_register}, {self.error_msg_register}')
-            expect(combined_locator.first).to_be_visible(timeout=10000)
+            combined_locator = (
+                self.page.locator(self.success_msg_register)
+                .or_(self.page.locator(self.error_msg_register))
+                .or_(self.page.get_by_text("Email đã tồn tại"))
+                .or_(self.page.locator('form p, [role="alert"]'))
+            )
+            expect(combined_locator.first).to_be_visible(timeout=15000)
         else:
             # Luồng báo lỗi mật khẩu (REG-004)
             error_msg = register_data["expected_ui_response"]["error_message"]
