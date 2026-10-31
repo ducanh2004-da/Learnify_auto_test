@@ -1,1 +1,0 @@
-[INFO] Sending registration request for leminhnguyet_api
