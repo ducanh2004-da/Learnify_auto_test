@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Load .env file if it exists locally; does not fail if missing in CI
 ENV_FILE_PATH = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(dotenv_path=ENV_FILE_PATH, override=False)
 
