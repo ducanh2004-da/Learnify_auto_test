@@ -1,0 +1,6 @@
+[INFO] Sending registration request for learner_test_auto
+[INFO] Sending verify user by email request. 
+[INFO] Sending registration request for existing_user_auto
+[INFO] Sending verify user by email request. 
+[INFO] Sending login request for testuser_1792138301@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: b2aea51c-cd47-4503-a75b-00b6dff08fb2

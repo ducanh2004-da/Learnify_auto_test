@@ -1,0 +1,3 @@
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
+URL after navigation: https://learnify.io.vn/instructor/course-builder

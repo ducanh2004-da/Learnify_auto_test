@@ -1,0 +1,2 @@
+[INFO] Sending login request for testuser2@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 23cf95f8-ba8d-41a7-a324-184734cd9cc1
