@@ -1,0 +1,18 @@
+[INFO] Sending registration request for user1793422951e2e
+[INFO] Sending verify user by email request. 
+[INFO] Sending login request for testuser_1793422951@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 1747aedd-6c39-45f3-b080-fb3b55d1c27e
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
+URL after navigation: https://learnify.io.vn/learner/dashboard?redirect=%2Flearner
+[INFO] Return courseId: 677eca12-208e-4d73-ba86-81fa61115a63
+[INFO]  courseID is: 677eca12-208e-4d73-ba86-81fa61115a63
+[INFO] Total questions: 1
+[INFO] Processing question 1 out of 1
+[INFO] Complete Quiz
+
+[CLEANUP] Bắt đầu dọn dẹp 1 user rác...
+[INFO] Sending login request for masteradmin@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 3bf235fa-da99-47b2-8ce6-5f12023ee65b
+[INFO] Sending delete user request.
+[CLEANUP ERROR] Không thể xóa user 1747aedd-6c39-45f3-b080-fb3b55d1c27e. Lỗi: Delete user failed: [{'message': 'Failed to delete user with ID 1747aedd-6c39-45f3-b080-fb3b55d1c27e', 'extensions': {'code': 'HttpException'}}]
