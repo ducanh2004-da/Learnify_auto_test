@@ -35,6 +35,11 @@ jobs:
           cache: "pip"
           cache-dependency-path: "requirement.txt"
 
+      - name: Validate requirement.txt Encoding
+        run: |
+          file requirement.txt
+          head -n 5 requirement.txt
+
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
