@@ -25,7 +25,10 @@ class TestAccountUI:
         with allure.step("3. Điều hướng đến trang quản lý tài khoản cá nhân"):
             dashboard_page.navigate_to_account_page()
         with allure.step("4. Chỉnh sửa thông tin tài khoản và xác thực kết quả"):
-            account_page.edit_information(account_data=account_data)
+            account_page.edit_information(
+                account_data=account_data,
+                original_email=login_data["credentials"]["email"]
+            )
 
 
         

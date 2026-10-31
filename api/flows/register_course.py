@@ -18,12 +18,17 @@ class EnrollCourseFlow(BaseFlow):
             }
         }
         log_info(f"Sending register course request for {course_id}")
+        token = self.variables.get_variable("accessToken")
+        headers = {}
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
         
         if pw_request:
-            # 1. Chạy qua Playwright APIRequestContext (được đồng bộ Auth/Cookie từ trình duyệt UI)
+            # 1. Chạy qua Playwright APIRequestContext (được đồng bộ Auth/Cookie/Token)
             response = pw_request.post(
                 self.api_url, 
-                data={'query': mutation, 'variables': variables}
+                data={'query': mutation, 'variables': variables},
+                headers=headers
             )
             assert response.ok, f"API Enroll Course (Playwright) thất bại với HTTP status: {response.status}"
             response_data = response.json()
@@ -31,7 +36,8 @@ class EnrollCourseFlow(BaseFlow):
             # 2. Fallback sử dụng requests python thuần (dành cho các test API độc lập không chạy UI)
             response = requests.post(
                 self.api_url, 
-                json={'query': mutation, 'variables': variables}
+                json={'query': mutation, 'variables': variables},
+                headers=headers
             )
             assert response.status_code == 200, f"API Enroll Course (Requests) thất bại với HTTP status: {response.status_code}"
             response_data = response.json()

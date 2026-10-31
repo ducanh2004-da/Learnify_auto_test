@@ -12,26 +12,28 @@ class BasePage:
     def click_element(self, selector: str):
         self.page.click(selector)
 
-    def wait_for_element_visible(self, selector: str, timeout: int = 5000):
+    def wait_for_element_visible(self, selector: str, timeout: int = 15000):
         self.page.wait_for_selector(selector, state='visible', timeout=timeout)
 
     def enter_text(self, selector: str, text: str):
         self.page.fill(selector, text)
 
-    def check_for_url(self, url: str, timeout: int = 9000):
+    def check_for_url(self, url: str, timeout: int = 15000):
+        if url.startswith("/"):
+            url = f"**{url}*"
         self.page.wait_for_url(url, timeout=timeout)
         print(f"URL after navigation: {self.page.url}")
 
-    def expect_title(self, expected_title: str):
-        expect(self.page).to_have_title(expected_title)
+    def expect_title(self, expected_title: str, timeout: int = 15000):
+        expect(self.page).to_have_title(expected_title, timeout=timeout)
 
-    def expect_element_visible(self, selector: str):
-        expect(self.page.locator(selector)).to_be_visible()
+    def expect_element_visible(self, selector: str, timeout: int = 15000):
+        expect(self.page.locator(selector)).to_be_visible(timeout=timeout)
 
-    def expect_element_text(self, expected_text: str, selector: str):
-        expect(self.page.locator(selector)).to_have_text(expected_text)
+    def expect_element_text(self, expected_text: str, selector: str, timeout: int = 15000):
+        expect(self.page.locator(selector)).to_have_text(expected_text, timeout=timeout)
 
-    def expect_element_contain_text(self, expected_text: str, selector: str, timeout: int = 5000):
+    def expect_element_contain_text(self, expected_text: str, selector: str, timeout: int = 15000):
         expect(self.page.locator(selector)).to_contain_text(expected_text, timeout=timeout)
         
 

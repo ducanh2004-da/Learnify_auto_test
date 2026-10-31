@@ -64,7 +64,7 @@ class TestAuthUI:
             auth_page.navigate_to_register()
         with allure.step("2. Kiểm tra các điều kiện xác thực (HTML5 Validation / để trống)"):
             is_html5 = register_data["expected_ui_response"].get("isHtml5Validation", False)
-            is_empty = "empty fields" in register_data["test_name"].lower()
+            is_empty = "empty" in register_data["test_name"].lower()
         with allure.step("3. Thực hiện gửi form đăng ký và xác thực thông báo lỗi tương ứng"):
             auth_page.register(
                 register_data, 

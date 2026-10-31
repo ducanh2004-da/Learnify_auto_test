@@ -3,7 +3,7 @@
         {
             "test_name": "Successful enter course with full name",
             "data":{
-                "course_name":"software testing 04"
+                "course_name":"Data structure"
             },
             "expected_ui_response": {
                 "url": "**/learner/courses*",
@@ -13,7 +13,7 @@
         {
             "test_name": "Successful enter course with partial name",
             "data":{
-                "course_name":"software"
+                "course_name":"Data str"
             },
             "expected_ui_response": {
                 "url": "**/learner/courses*",

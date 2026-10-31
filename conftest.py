@@ -119,6 +119,37 @@ def user_cleanup():
             print(f"[CLEANUP ERROR] Không thể xóa user {user_id}. Lỗi: {e}")
 
 
+@pytest.fixture(scope="session", autouse=True)
+def ensure_seed_users():
+    """
+    Ensure required static learner accounts exist and are verified in the backend
+    before running the test suite.
+    """
+    env_config = EnvConfig()
+    api_url = env_config.config["api_url"]
+    auth_flow = AuthFlow(api_url=api_url, context=APIContext())
+
+    seed_users = [
+        ("learner_test_auto", "testuser_1792138301@gmail.com", "123456789", "0912345671"),
+        ("existing_user_auto", "testuser1@gmail.com", "Password@123!", "0912345670"),
+    ]
+    for username, email, pwd, phone in seed_users:
+        try:
+            auth_flow.register(
+                register_data={
+                    "credentials": {
+                        "username": username,
+                        "email": email,
+                        "password": pwd,
+                        "phoneNumber": phone,
+                    }
+                }
+            )
+            auth_flow.verifyUserByEmail(email)
+        except Exception as e:
+            print(f"[SEED WARNING] Could not seed/verify {email}: {e}")
+
+
 @pytest.fixture(scope="class")
 def setup_class(request):
     env_config = EnvConfig()

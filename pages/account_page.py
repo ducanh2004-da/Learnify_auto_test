@@ -46,10 +46,13 @@ class AccountPage(BasePage):
         # 5. Đợi thẻ input BIẾN MẤT (Đảm bảo quá trình chuyển đổi UI div -> input -> div đã hoàn tất)
         input_element.wait_for(state="hidden", timeout=5000)
 
-    def edit_information(self, account_data):
+    def edit_information(self, account_data, original_email=None):
+        import time
         # Lấy dữ liệu test
         new_username = account_data["data"]["username"]
-        new_email = account_data["data"]["email"]
+        base_email = account_data["data"]["email"]
+        local_part, domain_part = base_email.split("@", 1)
+        new_email = f"{local_part}_{int(time.time())}@{domain_part}"
         new_phone = account_data["data"]["phoneNumber"]
 
         # --- 1. Edit Username ---
@@ -65,3 +68,8 @@ class AccountPage(BasePage):
         # --- 3. Edit Phone Number ---
         self.edit_inline_field(self.edit_phone_number_btn, self.edit_phone_number_inp, new_phone)
         expect(self.page.locator(f'div.editable-field-text:has-text("{new_phone}")')).to_be_visible()
+
+        # --- 4. Khôi phục email gốc để tránh làm hỏng tài khoản dùng chung cho các test sau ---
+        if original_email:
+            self.edit_inline_field(self.edit_email_btn, self.edit_email_inp, original_email)
+            expect(self.page.locator(f'div.editable-field-text:has-text("{original_email}")')).to_be_visible()
