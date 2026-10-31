@@ -1,8 +1,9 @@
-from _pytest import doctest
+from pathlib import Path
 from pages.base_page import BasePage
 from config.env_config import EnvConfig
 from utils.logger import log_info, log_result, log_error
-import os
+
+
 class InstructorPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
@@ -35,12 +36,12 @@ class InstructorPage(BasePage):
         self.expect_element_contain_text("Created", self.created_tag)
         self.expect_element_visible(self.upload_file_field)
 
+    def upload_file(self, file_name: str):
+        base_dir = Path(__file__).resolve().parent.parent
+        file_path = base_dir / "FileToUpload" / file_name
 
-    def upload_file(self, file_path):
-        file_path = os.path.join(os.getcwd(), 'FileToUpload', file_path)
-        
         # Bỏ qua file_chooser, set trực tiếp vào thẻ input[type="file"] có class cb-dropzone__file-input
-        self.page.locator("input.cb-dropzone__file-input").set_input_files(file_path)
+        self.page.locator("input.cb-dropzone__file-input").set_input_files(str(file_path))
 
     def fill_lesson_information(self, create_course_data):
         self.expect_element_visible(self.lesson_name)
@@ -64,7 +65,3 @@ class InstructorPage(BasePage):
         self.click_element(self.lesson_card_01)
         self.wait_for_element_visible(self.lesson_detail_check)
         self.expect_element_visible(self.lesson_detail_check)
-
-        
-
-    

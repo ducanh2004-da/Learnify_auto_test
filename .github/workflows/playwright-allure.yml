@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: # Cho phép chạy thủ công từ giao diện
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: # Cho phép chạy thủ công từ giao diện GitHub Actions
 
 jobs:
   build-and-test:
@@ -12,43 +15,75 @@ jobs:
     permissions:
       contents: write # Quyền để Actions push report lên nhánh gh-pages
 
+    env:
+      CI: "true"
+      HEADLESS: "true"
+      ENV: ${{ vars.ENV || 'dev' }}
+      BASE_URL: ${{ vars.BASE_URL || 'https://learnify.io.vn' }}
+      API_URL: ${{ vars.API_URL || 'https://learnify-be.onrender.com/graphql' }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL || 'masteradmin@gmail.com' }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD || '1234567' }}
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: "requirement.txt"
 
-      - name: Install Dependencies
+      - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirement.txt
 
       - name: Install Playwright Browsers and OS Dependencies
-        # Bước bắt buộc của Playwright để tải trình duyệt giả lập trên Ubuntu
         run: playwright install --with-deps chromium
 
       - name: Run Pytest Tests
-        continue-on-error: true
-        # Chạy test và lưu data thô vào thư mục 'reports'
+        # Không dùng continue-on-error: true để trạng thái Job phản ánh đúng kết quả Pass/Fail của bộ test.
+        # Các bước tạo và deploy Allure Report phía dưới dùng if: always() nên vẫn luôn chạy khi test fail.
         run: pytest --alluredir=reports
+
+      - name: Set up Java (Required by Allure CLI)
+        if: always()
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Set up Node.js
+        if: always()
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
       - name: Install Allure Commandline
         if: always()
-        # Sử dụng npm để cài Allure trực tiếp (cách ổn định nhất như bạn đã làm)
         run: npm install -g allure-commandline
+
+      - name: Restore Allure History from gh-pages
+        if: always()
+        continue-on-error: true
+        run: |
+          git fetch origin gh-pages --depth=1
+          git checkout origin/gh-pages -- history
+          mkdir -p reports/history
+          cp -r history/* reports/history/
+          rm -rf history
 
       - name: Generate Allure Report
         if: always()
-        # Chuyển đổi data thô thành web HTML tĩnh tại thư mục 'allure-report'
         run: allure generate reports -o allure-report --clean
 
       - name: Deploy Report to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: always()
+        if: always() && github.event_name != 'pull_request'
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: allure-report
+          keep_files: false

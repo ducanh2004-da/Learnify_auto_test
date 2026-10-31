@@ -64,6 +64,7 @@ traces/
 # Test Reports (Allure, Pytest-HTML, etc.)
 # ==========================================
 allure-report/
+allure-results/
 report.html
 reports/
 *.html
