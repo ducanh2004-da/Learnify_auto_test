@@ -1,0 +1,16 @@
+[INFO] Sending registration request for user1793511826e2e
+[INFO] Sending verify user by email request. 
+[INFO] Sending login request for testuser_1793511826@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: 67154afe-4f9a-4d91-8412-c2cb02fdd67c
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
+URL after navigation: https://learnify.io.vn/learner/dashboard?redirect=%2Flearner
+[INFO] Return courseId: 677eca12-208e-4d73-ba86-81fa61115a63
+[INFO]  courseID is: 677eca12-208e-4d73-ba86-81fa61115a63
+[INFO] Total questions: 1
+[INFO] Processing question 1 out of 1
+[INFO] Complete Quiz
+
+[CLEANUP] Bắt đầu dọn dẹp 1 user rác...
+
+[CLEANUP INFO] Không tìm thấy ADMIN_EMAIL / ADMIN_PASSWORD trong môi trường. Bỏ qua bước dọn dẹp user.

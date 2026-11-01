@@ -1,0 +1,9 @@
+[INFO] Sending registration request for user1793511905e2e
+[INFO] Sending verify user by email request. 
+[INFO] Sending login request for testuser_1793511905@gmail.com.
+[INFO] Đã trích xuất User ID từ Token: c276302a-9c93-41c0-94ad-4944013515ed
+[INFO] Navigating to the login page.
+[INFO] Entering login credentials and submitting the form.
+URL after navigation: https://learnify.io.vn/learner/dashboard?redirect=%2Flearner
+[INFO] Return courseId: 677eca12-208e-4d73-ba86-81fa61115a63
+[INFO] Sending register course request for 677eca12-208e-4d73-ba86-81fa61115a63
