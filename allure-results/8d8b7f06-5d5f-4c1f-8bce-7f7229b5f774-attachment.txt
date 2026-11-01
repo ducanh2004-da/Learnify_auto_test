@@ -1,3 +1,0 @@
-[INFO] Navigating to the login page.
-[INFO] Entering login credentials and submitting the form.
-URL after navigation: http://localhost:3000/reviewer/courses?tab=All&skip=0

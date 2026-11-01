@@ -21,8 +21,8 @@ jobs:
       ENV: ${{ vars.ENV || 'dev' }}
       BASE_URL: ${{ vars.BASE_URL || 'https://learnify.io.vn' }}
       API_URL: ${{ vars.API_URL || 'https://learnify-be.onrender.com/graphql' }}
-      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL || 'masteradmin@gmail.com' }}
-      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD || '1234567' }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
 
     steps:
       - name: Checkout Code

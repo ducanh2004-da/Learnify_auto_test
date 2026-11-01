@@ -422,6 +422,15 @@ def user_cleanup():
 
     # 1. Khởi tạo cấu hình và Context độc lập cho cleanup
     env_config = EnvConfig()
+    admin_email = env_config.config.get("admin_email")
+    admin_password = env_config.config.get("admin_password")
+
+    if not admin_email or not admin_password:
+        print("\n[CLEANUP INFO] Không tìm thấy ADMIN_EMAIL / ADMIN_PASSWORD trong môi trường. Bỏ qua bước dọn dẹp user.")
+        return
+
+    print(f"\n[CLEANUP] Bắt đầu dọn dẹp {len(created_users)} user rác...")
+
     api_url = env_config.config["api_url"]
     cleanup_context = APIContext()  # Tạo context riêng cho quá trình dọn dẹp
 
@@ -429,8 +438,8 @@ def user_cleanup():
     auth_flow = AuthFlow(api_url=api_url, context=cleanup_context)
 
     admin_creds = {
-        "email": env_config.config["admin_email"],
-        "password": env_config.config["admin_password"],
+        "email": admin_email,
+        "password": admin_password,
     }
 
     try:

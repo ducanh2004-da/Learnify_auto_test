@@ -19,9 +19,9 @@ class Settings(BaseSettings):
     API_URL: str = Field(default="https://learnify-be.onrender.com/graphql", description="GraphQL API URL")
     DB_URL: Optional[str] = Field(default="", description="Database connection string (optional)")
 
-    # Admin credentials for test data cleanup
-    ADMIN_EMAIL: str = Field(default="masteradmin@gmail.com", description="Admin email for user cleanup")
-    ADMIN_PASSWORD: str = Field(default="1234567", description="Admin password for user cleanup")
+    # Admin credentials for test data cleanup (loaded securely from .env or CI secrets)
+    ADMIN_EMAIL: str = Field(default="", description="Admin email for user cleanup")
+    ADMIN_PASSWORD: str = Field(default="", description="Admin password for user cleanup")
 
     # Playwright execution settings
     HEADLESS: bool = Field(default=True, description="Run browser in headless mode")

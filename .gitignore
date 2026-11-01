@@ -74,8 +74,21 @@ reports/
 # ==========================================
 .env
 .env.*
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 !.env.example
 !.env.template
+
+# Secret Keys, Certificates & Credentials
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
 
 # ==========================================
 # Logs
@@ -109,3 +122,6 @@ $RECYCLE.BIN/
 # Local Scratch / Debug scripts
 # ==========================================
 scratch*.py
+scratch/
+debug_*.py
+*.tmp
